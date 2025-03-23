@@ -3,6 +3,7 @@ const express = require("express");
 const session = require("express-session");
 const app = express();
 const pool = require("./db/pool");
+const passport = require("passport");
 const pgSession = require("connect-pg-simple")(session);
 
 require("dotenv").config();
@@ -32,6 +33,11 @@ app.use(
     },
   })
 );
+
+require("./passport");
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 const PORT = process.env.PORT;
 

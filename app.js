@@ -1,13 +1,13 @@
+require("dotenv").config();
+
 const path = require("node:path");
 const express = require("express");
 const session = require("express-session");
 const app = express();
 const pool = require("./db/pool");
 const passport = require("passport");
+const indexRouter = require("./routes/indexRoute");
 const pgSession = require("connect-pg-simple")(session);
-
-require("dotenv").config();
-
 const assetsPath = path.join(__dirname, "public");
 
 app.set("views", path.join(__dirname, "views"));
@@ -38,6 +38,8 @@ require("./passport");
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use("/", indexRouter);
 
 const PORT = process.env.PORT;
 

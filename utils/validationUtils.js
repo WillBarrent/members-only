@@ -29,6 +29,11 @@ const signUpValidation = [
     .withMessage("Password must contain alphabetic letters and numbers.")
     .isLength({ min: 8 })
     .withMessage("Password must contain at least 8 characters."),
+  body("confirmPassword")
+    .custom((value, { req }) => {
+      return value === req.body.confirmPassword;
+    })
+    .withMessage("Passwords do not match."),
 ];
 
 module.exports = { signUpValidation };

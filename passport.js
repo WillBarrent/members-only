@@ -1,7 +1,7 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const pool = require("./db/pool");
-const { validPassword } = require("./utils/passwordUtils");
+const { validatePassword } = require("./utils/passwordUtils");
 
 const verifyCallback = async (username, password, done) => {
   try {
@@ -17,7 +17,7 @@ const verifyCallback = async (username, password, done) => {
       return done(null, false);
     }
 
-    const isValid = validPassword(password, userPassword);
+    const isValid = validatePassword(password, userPassword);
 
     if (isValid) {
       return done(null, user);

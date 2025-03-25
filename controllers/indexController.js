@@ -1,5 +1,7 @@
 const { createUser } = require("../db/db");
 const { validationResult } = require("express-validator");
+const { hashPassword } = require("../utils/authUtils");
+const pool = require("../db/pool");
 
 async function signUpGet(req, res, next) {
   res.render("signup");
@@ -13,14 +15,16 @@ async function signUpPost(req, res, next) {
       return res.render("signup");
     }
 
-    const { firstname, lastname, username, password, confirmPassword } =
+    const { firstname, lastname, username, password } =
       req.body;
 
-    if (password != confirmPassword) {
-      return res.render("signup");
-    }
-
-    const result = await createUser(firstname, lastname, username, password);
+    const hashedPassword = await hashPassword(password);
+    const result = await createUser(
+      firstname,
+      lastname,
+      username,
+      hashedPassword
+    );
 
     if (!result) {
       return res.render("signup");

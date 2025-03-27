@@ -15,8 +15,7 @@ async function signUpPost(req, res, next) {
       return res.render("signup");
     }
 
-    const { firstname, lastname, username, password } =
-      req.body;
+    const { firstname, lastname, username, password } = req.body;
 
     const hashedPassword = await hashPassword(password);
     const result = await createUser(
@@ -36,12 +35,29 @@ async function signUpPost(req, res, next) {
   }
 }
 
+async function joinTheClubGet(req, res, next) {
+  console.log(req.session);
+  res.render("join-the-club");
+}
+
+async function joinTheClubPost(req, res, next) {
+  const { membershipPassword } = req.body;
+
+  if (membershipPassword === process.env.MEMBERSHIP_PASSWORD) {
+    return res.redirect("/login");
+  }
+
+  res.redirect("/join-the-club");
+}
+
 async function loginGet(req, res, next) {
-  res.send("Login form.");
+  res.render("login");
 }
 
 module.exports = {
   signUpGet,
   signUpPost,
+  joinTheClubGet,
+  joinTheClubPost,
   loginGet,
 };

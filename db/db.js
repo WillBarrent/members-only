@@ -21,7 +21,14 @@ async function createUser(firstName, lastName, username, password) {
   return true;
 }
 
+async function giveMembership(userId) {
+  await pool.query("UPDATE TABLE users SET membership = true WHERE id = $1", [
+    userId,
+  ]);
+}
+
 module.exports = {
   doesUserExist,
   createUser,
+  giveMembership,
 };

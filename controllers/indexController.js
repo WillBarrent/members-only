@@ -1,7 +1,6 @@
-const { createUser } = require("../db/db");
+const { createUser, giveMembership, isUserTheMember } = require("../db/db");
 const { validationResult } = require("express-validator");
 const { hashPassword } = require("../utils/authUtils");
-const pool = require("../db/pool");
 
 async function signUpGet(req, res, next) {
   res.render("signup");
@@ -36,22 +35,29 @@ async function signUpPost(req, res, next) {
 }
 
 async function joinTheClubGet(req, res, next) {
-  console.log(req.session);
-  res.render("join-the-club");
+  const isMember = await isUserTheMember(req.session.passport.user);
+
+  if (isMember) {
+    return res.redirect("/");
+  }
+
+  return res.render("join-the-club");
 }
 
 async function joinTheClubPost(req, res, next) {
   const { membershipPassword } = req.body;
 
   if (membershipPassword === process.env.MEMBERSHIP_PASSWORD) {
-    return res.redirect("/login");
+    const userId = req.session.passport.user;
+    await giveMembership(userId);
+    return res.redirect("/");
   }
 
-  res.redirect("/join-the-club");
+  return res.redirect("/join-the-club");
 }
 
 async function loginGet(req, res, next) {
-  res.render("login");
+  return res.render("login");
 }
 
 module.exports = {

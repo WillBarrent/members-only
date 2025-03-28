@@ -8,6 +8,7 @@ const {
   joinTheClubPost,
 } = require("../controllers/indexController");
 const passport = require("passport");
+
 const indexRouter = Router();
 
 indexRouter.get("/", (req, res, next) => {
@@ -18,16 +19,15 @@ indexRouter.get("/", (req, res, next) => {
 indexRouter.get("/sign-up", signUpGet);
 indexRouter.post("/sign-up", signUpValidation, signUpPost);
 indexRouter.get("/join-the-club", joinTheClubGet);
-indexRouter.get("/join-the-club", joinTheClubPost);
+indexRouter.post("/join-the-club", joinTheClubPost);
 
 indexRouter.get("/login", loginGet);
 indexRouter.post(
   "/login",
   passport.authenticate("local", {
-    failureRedirect: "/",
-    successRedirect: "/",
-  }),
-  (req, res, next) => {}
+    failureRedirect: "/local",
+    successRedirect: "/join-the-club",
+  })
 );
 
 module.exports = indexRouter;

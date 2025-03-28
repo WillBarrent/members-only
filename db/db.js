@@ -22,13 +22,26 @@ async function createUser(firstName, lastName, username, password) {
 }
 
 async function giveMembership(userId) {
-  await pool.query("UPDATE TABLE users SET membership = true WHERE id = $1", [
+  await pool.query("UPDATE users SET membership = true WHERE id = $1", [
     userId,
   ]);
+}
+
+async function isUserTheMember(userId) {
+  const {rows: user} = await pool.query("SELECT membership FROM users WHERE id = $1", [
+    userId,
+  ]);
+
+  if (user[0] === true) {
+    return true;
+  }
+
+  return false;
 }
 
 module.exports = {
   doesUserExist,
   createUser,
   giveMembership,
+  isUserTheMember,
 };

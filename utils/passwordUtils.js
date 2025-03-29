@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 
-async function genPassword(password) {
-  const hashedPassword = await bcrypt.hash(req.body.password, 10);
+async function hashPassword(password) {
+  const hashedPassword = await bcrypt.hash(password, 10);
   return hashedPassword;
 }
 
@@ -10,4 +10,4 @@ async function validatePassword(password, userPassword) {
   return match;
 }
 
-module.exports = { genPassword, validatePassword };
+module.exports = { hashPassword, validatePassword };

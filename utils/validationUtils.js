@@ -31,7 +31,7 @@ const signUpValidation = [
     .withMessage("Password must contain at least 8 characters."),
   body("confirmPassword")
     .custom((value, { req }) => {
-      return value === req.body.confirmPassword;
+      return value === req.body.password;
     })
     .withMessage("Passwords do not match."),
 ];

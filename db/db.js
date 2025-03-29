@@ -32,7 +32,7 @@ async function isUserTheMember(userId) {
     userId,
   ]);
 
-  if (user[0] === true) {
+  if (user[0]["membership"] === true) {
     return true;
   }
 

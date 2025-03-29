@@ -5,35 +5,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign-Up</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
-  <form action="/sign-up" class="signup-form" method="post">
-    <div class="full-name">
-      <div class="full-name__first-name">
-        <label class="full-name__first-name--label" for="first-name">First Name</label>
-        <input type="text" name="firstname" class="full-name__first-name--input" id="first-name" placeholder="Your first name">
+  <div class="sign-up">
+    <form action="/sign-up" class="sign-up-form" method="post">
+      <div class="sign-up-form__title">Create an account</div>
+      <div class="full-name">
+        <div class="full-name__first-name">
+          <label class="full-name__first-name__label" for="first-name">First Name</label>
+          <input type="text" name="firstname" class="full-name__first-name__input" id="first-name" placeholder="Your first name">
+        </div>
+        <div class="full-name__last-name">
+          <label class="full-name__last-name__label" for="last-name">Last Name</label>
+          <input type="text" name="lastname" class="full-name__last-name__input" id="last-name" placeholder="Your last name">
+        </div>
       </div>
-      <div class="full-name__last-name">
-        <label class="full-name__last-name--label" for="last-name">Last Name</label>
-        <input type="text" name="lastname" class="full-name__last-name--input" id="last-name" placeholder="Your last name">
+      <div class="username">
+        <label class="username__label" for="username">Username</label>
+        <input name="username" type="text" class="username__input" id="username" placeholder="Your username">
       </div>
-    </div>
-    <div class="username">
-      <label class="username__label" for="username">Username</label>
-      <input name="username" type="text" class="username__input" id="username" placeholder="Your username">
-    </div>
-    <div class="password">
-      <label class="password__label" for="password">Password</label>
-      <input name="password" type="password" class="password__input" id="password" placeholder="Your password">
-    </div>
-    <div class="confirm-password">
-      <label class="confirm-password__label" for="confirm-password">Confirm your password</label>
-      <input name="confirmPassword" type="password" class="confirm-password__input" id="confirm-password" placeholder="Repeat your password">
-    </div>
-    <button class="signup-form__submit" type="submit">Sign Up</button>
-  </form>
+      <div class="password">
+        <label class="password__label" for="password">Password</label>
+        <input name="password" type="password" class="password__input" id="password" placeholder="Your password">
+      </div>
+      <div class="confirm-password">
+        <label class="confirm-password__label" for="confirm-password">Confirm your password</label>
+        <input name="confirmPassword" type="password" class="confirm-password__input" id="confirm-password" placeholder="Repeat your password">
+      </div>
+      <button class="signup-form__submit" type="submit">Sign Up</button>
+    </form>
+  </div>
 </body>
 
 </html>

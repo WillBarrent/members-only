@@ -5,20 +5,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Join The Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
-  <form action="/login" method="post" class="login">
-    <div class="username">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" placeholder="Username">
-    </div>
-    <div class="password">
-      <label for="username">Password</label>
-      <input type="password" id="password" name="password" placeholder="Password">
-    </div>
-    <button type="submit">Sign In</button>
-  </form>
+  <div class="login">
+    <a href="/" class="members-only">Members Only</a>
+    <form action="/login" method="post" class="login-form">
+      <div class="login-form__title">Login</div>
+      <div class="login-form__username">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Username">
+      </div>
+      <div class="login-form__password">
+        <label for="username">Password</label>
+        <input type="password" id="password" name="password" placeholder="Password">
+      </div>
+      <button class="login-form__submit" type="submit">Sign In</button>
+    </form>
+    <a href="/sign-up" class="create-an-account">Create an account</a>
+  </div>
 </body>
 
 </html>

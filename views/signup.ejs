@@ -13,32 +13,69 @@
 
 <body>
   <div class="sign-up">
+    <a href="/" class="members-only">Members Only</a>
     <form action="/sign-up" class="sign-up-form" method="post">
       <div class="sign-up-form__title">Create an account</div>
       <div class="full-name">
         <div class="full-name__first-name">
           <label class="full-name__first-name__label" for="first-name">First Name</label>
           <input type="text" name="firstname" class="full-name__first-name__input" id="first-name" placeholder="Your first name">
+          <% if (locals.errors) { %>
+          <% locals.errors.map((error) => { %>
+          <% if (error.path == "lastname") { %>
+          <div class="error-message"><%= error.msg %></div>
+          <% } %>
+          <% }); %>
+          <% } %>
         </div>
         <div class="full-name__last-name">
           <label class="full-name__last-name__label" for="last-name">Last Name</label>
           <input type="text" name="lastname" class="full-name__last-name__input" id="last-name" placeholder="Your last name">
+          <% if (locals.errors) { %>
+          <% locals.errors.map((error) => { %>
+          <% if (error.path == "firstname") { %>
+          <div class="error-message"><%= error.msg %></div>
+          <% } %>
+          <% }); %>
+          <% } %>
         </div>
       </div>
       <div class="username">
         <label class="username__label" for="username">Username</label>
         <input name="username" type="text" class="username__input" id="username" placeholder="Your username">
+        <% if (locals.errors) { %>
+        <% locals.errors.map((error) => { %>
+        <% if (error.path == "username") { %>
+        <div class="error-message"><%= error.msg %></div>
+        <% } %>
+        <% }); %>
+        <% } %>
       </div>
       <div class="password">
         <label class="password__label" for="password">Password</label>
         <input name="password" type="password" class="password__input" id="password" placeholder="Your password">
+        <% if (locals.errors) { %>
+        <% locals.errors.map((error) => { %>
+        <% if (error.path == "password") { %>
+        <div class="error-message"><%= error.msg %></div>
+        <% } %>
+        <% }); %>
+        <% } %>
       </div>
       <div class="confirm-password">
         <label class="confirm-password__label" for="confirm-password">Confirm your password</label>
         <input name="confirmPassword" type="password" class="confirm-password__input" id="confirm-password" placeholder="Repeat your password">
+        <% if (locals.errors) { %>
+        <% locals.errors.map((error) => { %>
+        <% if (error.path == "confirmPassword") { %>
+        <div class="error-message"><%= error.msg %></div>
+        <% } %>
+        <% }); %>
+        <% } %>
       </div>
       <button class="signup-form__submit" type="submit">Sign Up</button>
     </form>
+    <a href="/login" class="already-have-an-account">Already have an account?</a>
   </div>
 </body>
 

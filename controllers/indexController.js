@@ -1,6 +1,6 @@
 const { createUser, giveMembership, isUserTheMember } = require("../db/db");
 const { validationResult } = require("express-validator");
-const { hashPassword } = require("../utils/authUtils");
+const { hashPassword } = require("../utils/passwordUtils");
 
 async function signUpGet(req, res, next) {
   res.render("signup");
@@ -11,7 +11,7 @@ async function signUpPost(req, res, next) {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.render("signup");
+      return res.render("signup", { errors: errors.array() });
     }
 
     const { firstname, lastname, username, password } = req.body;
@@ -35,6 +35,10 @@ async function signUpPost(req, res, next) {
 }
 
 async function joinTheClubGet(req, res, next) {
+  if (!req.session.hasOwnProperty("passport")) {
+    return res.redirect("/sign-up");
+  }
+
   const isMember = await isUserTheMember(req.session.passport.user);
 
   if (isMember) {

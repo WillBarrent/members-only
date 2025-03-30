@@ -36,4 +36,9 @@ const signUpValidation = [
     .withMessage("Passwords do not match."),
 ];
 
-module.exports = { signUpValidation };
+const loginValidation = [
+  body("username").notEmpty().withMessage("Username must be filled."),
+  body("password").notEmpty().withMessage("Password must be filled"),
+];
+
+module.exports = { signUpValidation, loginValidation };

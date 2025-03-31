@@ -1,18 +1,21 @@
 const { Router } = require("express");
-const { signUpValidation, loginValidation } = require("../utils/validationUtils");
+const {
+  signUpValidation,
+  loginValidation,
+} = require("../utils/validationUtils");
 const {
   signUpPost,
   signUpGet,
   loginGet,
   joinTheClubGet,
   joinTheClubPost,
+  loginPost,
 } = require("../controllers/indexController");
 const passport = require("passport");
 
 const indexRouter = Router();
 
 indexRouter.get("/", (req, res, next) => {
-  console.log(req.isAuthenticated());
   if (req.isAuthenticated()) {
     return res.send("Hello!");
   } else {
@@ -26,13 +29,6 @@ indexRouter.get("/join-the-club", joinTheClubGet);
 indexRouter.post("/join-the-club", joinTheClubPost);
 
 indexRouter.get("/login", loginGet);
-indexRouter.post(
-  "/login",
-  loginValidation,
-  passport.authenticate("local", {
-    failureRedirect: "/login",
-    successRedirect: "/join-the-club",
-  })
-);
+indexRouter.post("/login", loginValidation, loginPost);
 
 module.exports = indexRouter;

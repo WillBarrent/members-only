@@ -10,19 +10,19 @@ const verifyCallback = async (username, password, done) => {
       [username]
     );
 
-    const user = rows[0];
-    const userPassword = user["password"];
+    const user = rows.length === 0 ? null : rows[0];
+    const userPassword = rows.length === 0 ? null : user["password"];
 
     if (!user) {
-      return done(null, false);
+      return done(null, false, { message: "User not found" });
     }
 
-    const isValid = validatePassword(password, userPassword);
-
+    const isValid = await validatePassword(password, userPassword);
+    
     if (isValid) {
       return done(null, user);
     } else {
-      return done(null, false);
+      return done(null, false, { message: "Incorrect password" });
     }
   } catch (err) {
     done(err);

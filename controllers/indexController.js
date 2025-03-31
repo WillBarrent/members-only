@@ -1,6 +1,7 @@
 const { createUser, giveMembership, isUserTheMember } = require("../db/db");
 const { validationResult } = require("express-validator");
 const { hashPassword } = require("../utils/passwordUtils");
+const passport = require("passport");
 
 async function signUpGet(req, res, next) {
   res.render("signup");
@@ -60,7 +61,29 @@ async function joinTheClubPost(req, res, next) {
   return res.redirect("/join-the-club");
 }
 
+const loginPost = [
+  (req, res, next) => {
+    req.session.messages = [];
+    next();
+  },
+  passport.authenticate("local", {
+    failureRedirect: "/login",
+    successRedirect: "/join-the-club",
+    failureMessage: true,
+  }),
+];
+
 async function loginGet(req, res, next) {
+  if (
+    req.session.hasOwnProperty("messages") &&
+    req.session.messages.length !== 0
+  ) {
+    const err = req.session.messages[0];
+    console.log(req.session.messages);
+    req.session.messages = [];
+    return res.render("login", { err: err });
+  }
+
   return res.render("login");
 }
 
@@ -70,4 +93,5 @@ module.exports = {
   joinTheClubGet,
   joinTheClubPost,
   loginGet,
+  loginPost,
 };

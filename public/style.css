@@ -23,8 +23,13 @@ button {
   font-family: inherit;
 }
 
+ul {
+  list-style: none;
+}
+
 .sign-up,
-.login {
+.login,
+.join-the-club {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -35,14 +40,16 @@ button {
 
 .sign-up-form,
 .full-name,
-.login-form {
+.login-form,
+.join-the-club__form {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
 .sign-up-form,
-.login-form {
+.login-form,
+.join-the-club__form {
   padding: 40px 20px;
   background-color: var(--main-color);
   border-radius: 5px;
@@ -50,7 +57,8 @@ button {
 }
 
 .sign-up-form__title,
-.login-form__title {
+.login-form__title,
+.join-the-club__form label {
   font-size: 25px;
   text-align: center;
 
@@ -90,9 +98,10 @@ button {
 .password__input,
 .confirm-password__input,
 .login-form__username input,
-.login-form__password input {
+.login-form__password input,
+.join-the-club__form input {
   padding: 5px 3px;
-  width: 300px;
+  width: 100%;
 
   font-size: 16px;
   border: 1px solid rgba(0, 0, 0, 0.4);
@@ -100,7 +109,8 @@ button {
 }
 
 .signup-form__submit,
-.login-form__submit {
+.login-form__submit,
+.join-the-club__form button {
   cursor: pointer;
 
   margin-top: 10px;
@@ -141,5 +151,43 @@ button {
 }
 
 .error-message-login {
+  font-size: 18px;
+}
+
+.header {
+  background-color: var(--main-color);
+}
+
+.nav {
+  padding: 15px 30px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo {
+  font-size: 28px;
+  color: var(--second-color);
+}
+
+.nav a {
+  text-decoration: none;
+}
+
+.navigation {
+  display: flex;
+  gap: 15px;
+}
+
+.navigation__link {
+  background-color: var(--second-color);
+  color: var(--text-color);
+
+  border: none;
+  outline: none;
+
+  padding: 5px 10px;
+
   font-size: 18px;
 }

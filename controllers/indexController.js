@@ -15,6 +15,10 @@ async function indexGet(req, res, next) {
 }
 
 async function signUpGet(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect("/");
+  }
+
   res.render("signup");
 }
 
@@ -73,6 +77,10 @@ async function joinTheClubPost(req, res, next) {
 }
 
 async function loginGet(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect("/");
+  }
+
   if (
     req.session.hasOwnProperty("messages") &&
     req.session.messages.length !== 0

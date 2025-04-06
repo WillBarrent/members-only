@@ -3,6 +3,17 @@ const { validationResult } = require("express-validator");
 const { hashPassword } = require("../utils/passwordUtils");
 const passport = require("passport");
 
+async function indexGet(req, res, next) {
+  if (req.isAuthenticated()) {
+    console.log("Hey, you are authenticated!");
+    return res.render("index", {
+      login: true,
+    });
+  }
+
+  res.render("index");
+}
+
 async function signUpGet(req, res, next) {
   res.render("signup");
 }
@@ -61,18 +72,6 @@ async function joinTheClubPost(req, res, next) {
   return res.redirect("/join-the-club");
 }
 
-const loginPost = [
-  (req, res, next) => {
-    req.session.messages = [];
-    next();
-  },
-  passport.authenticate("local", {
-    failureRedirect: "/login",
-    successRedirect: "/join-the-club",
-    failureMessage: true,
-  }),
-];
-
 async function loginGet(req, res, next) {
   if (
     req.session.hasOwnProperty("messages") &&
@@ -87,11 +86,35 @@ async function loginGet(req, res, next) {
   return res.render("login");
 }
 
+const loginPost = [
+  (req, res, next) => {
+    req.session.messages = [];
+    next();
+  },
+  passport.authenticate("local", {
+    failureRedirect: "/login",
+    successRedirect: "/join-the-club",
+    failureMessage: true,
+  }),
+];
+
+async function logoutGet(req, res, next) {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+
+    res.redirect("/");
+  });
+}
+
 module.exports = {
+  indexGet,
   signUpGet,
   signUpPost,
   joinTheClubGet,
   joinTheClubPost,
   loginGet,
   loginPost,
+  logoutGet,
 };

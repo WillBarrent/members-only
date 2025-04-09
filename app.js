@@ -7,6 +7,7 @@ const app = express();
 const pool = require("./db/pool");
 const passport = require("passport");
 const indexRouter = require("./routes/indexRoute");
+const messageRouter = require("./routes/messageRoute");
 const pgSession = require("connect-pg-simple")(session);
 const assetsPath = path.join(__dirname, "public");
 
@@ -40,6 +41,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/", indexRouter);
+app.use("/create-new-message", messageRouter);
 
 const PORT = process.env.PORT;
 

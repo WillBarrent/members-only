@@ -28,9 +28,10 @@ async function giveMembership(userId) {
 }
 
 async function isUserTheMember(userId) {
-  const {rows: user} = await pool.query("SELECT membership FROM users WHERE id = $1", [
-    userId,
-  ]);
+  const { rows: user } = await pool.query(
+    "SELECT membership FROM users WHERE id = $1",
+    [userId]
+  );
 
   if (user[0]["membership"] === true) {
     return true;
@@ -39,9 +40,17 @@ async function isUserTheMember(userId) {
   return false;
 }
 
+async function createNewMessage(title, message, added, authorId) {
+  await pool.query(
+    "INSERT INTO messages (author_id, title, text, added) VALUES ($1, $2, $3, $4)",
+    [authorId, title, message, added]
+  );
+}
+
 module.exports = {
   doesUserExist,
   createUser,
   giveMembership,
   isUserTheMember,
+  createNewMessage
 };

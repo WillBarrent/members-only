@@ -5,9 +5,11 @@ const passport = require("passport");
 
 async function indexGet(req, res, next) {
   if (req.isAuthenticated()) {
-    console.log("Hey, you are authenticated!");
+    const isMember = await isUserTheMember(req.session.passport.user);
+
     return res.render("index", {
       login: true,
+      isMember: isMember,
     });
   }
 
@@ -86,7 +88,6 @@ async function loginGet(req, res, next) {
     req.session.messages.length !== 0
   ) {
     const err = req.session.messages[0];
-    console.log(req.session.messages);
     req.session.messages = [];
     return res.render("login", { err: err });
   }

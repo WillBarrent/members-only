@@ -27,6 +27,6 @@ indexRouter.post("/join-the-club", joinTheClubPost);
 indexRouter.get("/login", loginGet);
 indexRouter.post("/login", loginValidation, loginPost);
 
-indexRouter.get("/logout", logoutGet)
+indexRouter.get("/logout", logoutGet);
 
 module.exports = indexRouter;

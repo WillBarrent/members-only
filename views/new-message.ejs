@@ -13,14 +13,16 @@
 
 <body>
   <div class="new-message">
+    <a href="/" class="members-only">Members Only</a>
     <form action="/create-new-message" class="new-message__form" method="post">
+      <div class="new-message__title">Create New Message</div>
       <div class="message-title">
-        <label for="" class="message-title__label"></label>
-        <input type="text" class="message-title__input" placeholder="Title of your message" name="title">
+        <label for="" class="message-title__label">Title</label>
+        <input type="text" class="message-title__input" placeholder="Title of your message" name="title" id="title">
       </div>
       <div class="message-text">
-        <label for="" class="message-text__label"></label>
-        <input type="text" class="message-text__input" placeholder="Message" name="message">
+        <label for="" class="message-text__label">Message</label>
+        <input type="text" class="message-text__input" placeholder="Message" name="message" id="message">
       </div>
       <button class="create-new-message__submit">Create New Message</button>
     </form>

@@ -16,6 +16,7 @@
 body {
   box-sizing: border-box;
   font-family: var(--font);
+  background-color: var(--text-color);
 }
 
 input,
@@ -29,7 +30,8 @@ ul {
 
 .sign-up,
 .login,
-.join-the-club {
+.join-the-club,
+.new-message {
   height: 100vh;
   /* width: 100%; */
   display: flex;
@@ -41,7 +43,8 @@ ul {
 .sign-up-form,
 .full-name,
 .login-form,
-.join-the-club__form {
+.join-the-club__form,
+.new-message__form {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -49,7 +52,8 @@ ul {
 
 .sign-up-form,
 .login-form,
-.join-the-club__form {
+.join-the-club__form,
+.new-message__form {
   padding: 40px 20px;
   background-color: var(--main-color);
   border-radius: 5px;
@@ -58,7 +62,8 @@ ul {
 
 .sign-up-form__title,
 .login-form__title,
-.join-the-club__form label {
+.join-the-club__form label,
+.new-message__title {
   font-size: 25px;
   text-align: center;
 
@@ -74,7 +79,9 @@ ul {
 .password,
 .confirm-password,
 .login-form__username,
-.login-form__password {
+.login-form__password,
+.message-title,
+.message-text {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -86,7 +93,9 @@ ul {
 .password__label,
 .confirm-password__label,
 .login-form__username label,
-.login-form__password label {
+.login-form__password label,
+.message-title__label,
+.message-text__label {
   font-size: 18px;
   font-weight: 600;
   color: var(--text-color);
@@ -99,7 +108,9 @@ ul {
 .confirm-password__input,
 .login-form__username input,
 .login-form__password input,
-.join-the-club__form input {
+.join-the-club__form input,
+.message-title__input,
+.message-text__input {
   padding: 5px 3px;
   width: 300px;
 
@@ -114,7 +125,8 @@ ul {
 
 .signup-form__submit,
 .login-form__submit,
-.join-the-club__form button {
+.join-the-club__form button,
+.create-new-message__submit {
   cursor: pointer;
 
   margin-top: 10px;
@@ -194,4 +206,38 @@ ul {
   padding: 5px 10px;
 
   font-size: 18px;
+}
+
+.main {
+  
+  padding: 15px 30px;
+}
+
+.messages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.message {
+  padding: 5px 10px;
+  background-color: var(--main-color);
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+} 
+
+.message__title {
+  font-size: 25px;
+  font-weight: 500;
+  color: var(--second-color);
+}
+
+.message__info {
+  margin-top: 10px;
+
+  display: flex;
+  gap: 10px;
 }

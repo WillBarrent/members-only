@@ -18,9 +18,16 @@
         <div class="nav__logo">Members Only</div>
         <% if (locals.login) { %>
         <ul class="navigation">
+          <% if (locals.isMember) { %>
           <li class="navigation__item">
             <a href="/create-new-message" class="navigation__link">Create message</a>
           </li>
+          <% } else { %>
+          <li class="navigation__item">
+            <a href="/join-the-club" class="navigation__link">Join The Club</a>
+          </li>
+          <% } %>
+
           <li class="navigation__item">
             <a href="/logout" class="navigation__link">Log Out</a>
           </li>
@@ -35,9 +42,43 @@
           </li>
         </ul>
         <% } %>
-
       </nav>
     </header>
+
+    <main class="main">
+      <div class="messages">
+        <div class="message">
+          <div class="message__primary">
+            <div class="message__title">Title</div>
+            <div class="message__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, ut?</div>
+          </div>
+          <div class="message__info">
+            <div class="message__added">21/05/2023</div>
+            <div class="message__author">Barrent</div>
+          </div>
+        </div>
+        <div class="message">
+          <div class="message__primary">
+            <div class="message__title">Title</div>
+            <div class="message__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum modi nostrum unde. Molestias aperiam adipisci reiciendis pariatur quidem aliquid distinctio esse a asperiores obcaecati laboriosam illum, nisi repellat laudantium, ea, tempora facere. Dolore, quisquam, ut soluta rerum fugit voluptas officia consequatur tenetur quod reiciendis eaque nobis. Eum tempore illum iure.</div>
+          </div>
+          <div class="message__info">
+            <div class="message__added">21/05/2023</div>
+            <div class="message__author">Barrent</div>
+          </div>
+        </div>
+        <div class="message">
+          <div class="message__primary">
+            <div class="message__title">Title</div>
+            <div class="message__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque magni vel ipsam magnam aspernatur iste!</div>
+          </div>
+          <div class="message__info">
+            <div class="message__added">21/05/2023</div>
+            <div class="message__author">Barrent</div>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
 </body>
 

@@ -49,10 +49,10 @@ async function getUserName(userId) {
   return user[0]["username"];
 }
 
-async function createNewMessage(title, message, added, authorId) {
+async function createNewMessage(title, message, added, author) {
   await pool.query(
-    "INSERT INTO messages (author_id, title, text, added) VALUES ($1, $2, $3, $4)",
-    [authorId, title, message, added]
+    "INSERT INTO messages (author, title, text, added) VALUES ($1, $2, $3, $4)",
+    [author, title, message, added]
   );
 }
 

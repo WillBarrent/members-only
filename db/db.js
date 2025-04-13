@@ -56,6 +56,12 @@ async function createNewMessage(title, message, added, author) {
   );
 }
 
+async function getAllMessages() {
+  const {rows: messages} = await pool.query("SELECT * FROM messages");
+
+  return messages;
+}
+
 module.exports = {
   doesUserExist,
   createUser,
@@ -63,4 +69,5 @@ module.exports = {
   isUserTheMember,
   getUserName,
   createNewMessage,
+  getAllMessages,
 };

@@ -1,19 +1,29 @@
-const { createUser, giveMembership, isUserTheMember } = require("../db/db");
+const {
+  createUser,
+  giveMembership,
+  isUserTheMember,
+  getAllMessages,
+} = require("../db/db");
 const { validationResult } = require("express-validator");
 const { hashPassword } = require("../utils/passwordUtils");
 const passport = require("passport");
 
 async function indexGet(req, res, next) {
+  const allMessages = await getAllMessages();
+
   if (req.isAuthenticated()) {
     const isMember = await isUserTheMember(req.session.passport.user);
 
     return res.render("index", {
       login: true,
       isMember: isMember,
+      messages: allMessages,
     });
   }
 
-  res.render("index");
+  res.render("index", {
+    messages: allMessages,
+  });
 }
 
 async function signUpGet(req, res, next) {

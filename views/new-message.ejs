@@ -17,12 +17,12 @@
     <form action="/create-new-message" class="new-message__form" method="post">
       <div class="new-message__title">Create New Message</div>
       <div class="message-title">
-        <label for="" class="message-title__label">Title</label>
+        <label for="title" class="message-title__label">Title</label>
         <input type="text" class="message-title__input" placeholder="Title of your message" name="title" id="title">
       </div>
       <div class="message-text">
-        <label for="" class="message-text__label">Message</label>
-        <input type="text" class="message-text__input" placeholder="Message" name="message" id="message">
+        <label for="message" class="message-text__label">Message</label>
+        <textarea class="message-text__input" name="message" id="message">The Message</textarea>
       </div>
       <button class="create-new-message__submit">Create New Message</button>
     </form>

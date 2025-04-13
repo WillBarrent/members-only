@@ -40,6 +40,15 @@ async function isUserTheMember(userId) {
   return false;
 }
 
+async function getUserName(userId) {
+  const { rows: user } = await pool.query(
+    "SELECT username FROM users WHERE id = $1",
+    [userId]
+  );
+
+  return user[0]["username"];
+}
+
 async function createNewMessage(title, message, added, authorId) {
   await pool.query(
     "INSERT INTO messages (author_id, title, text, added) VALUES ($1, $2, $3, $4)",
@@ -52,5 +61,6 @@ module.exports = {
   createUser,
   giveMembership,
   isUserTheMember,
-  createNewMessage
+  getUserName,
+  createNewMessage,
 };

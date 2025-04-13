@@ -1,7 +1,8 @@
 :root {
-  --main-color: #b8b8ff;
-  --second-color: #9381ff;
-  --text-color: #f8f7ff;
+  --main-color: #588157;
+  --second-color: #3a5a40; 
+  --text-color: #dad7cd;
+  --second-text-color: #a3b18a;
   --font: "Lato", sans-serif;
 }
 
@@ -119,6 +120,11 @@ ul {
   border-radius: 3px;
 }
 
+.message-text__input {
+  resize: vertical;
+  max-height: 200px;
+}
+
 .join-the-club__form input {
   width: 100%;
 }
@@ -232,7 +238,7 @@ ul {
 .message__title {
   font-size: 25px;
   font-weight: 500;
-  color: var(--second-color);
+  color: var(--second-text-color);
 }
 
 .message__info {
@@ -240,4 +246,11 @@ ul {
 
   display: flex;
   gap: 10px;
+
+  color: var(--text-color);
+}
+
+.message__text {
+  font-size: 18px;
+  color: var(--text-color);
 }

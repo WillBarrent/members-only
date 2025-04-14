@@ -41,4 +41,17 @@ const loginValidation = [
   body("password").notEmpty().withMessage("Password must be filled"),
 ];
 
-module.exports = { signUpValidation, loginValidation };
+const newMessageValidation = [
+  body("title")
+    .notEmpty()
+    .withMessage("Title cannot be empty")
+    .isLength({ min: 3, max: 50 })
+    .withMessage("It seems you are out of range of title length (3-50)"),
+  body("message")
+    .notEmpty()
+    .withMessage("Message cannot be empty")
+    .isLength({ min: 3, max: 255 })
+    .withMessage("It seems you are out of range of message length (3-255)"),
+];
+
+module.exports = { signUpValidation, loginValidation, newMessageValidation };

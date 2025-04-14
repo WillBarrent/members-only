@@ -1,3 +1,4 @@
+const { validationResult } = require("express-validator");
 const {
   createNewMessage,
   getUserName,
@@ -18,14 +19,25 @@ async function createMessageGet(req, res, next) {
 }
 
 async function createMessagePost(req, res, next) {
-  const date = new Date(Date.now());
-  const added = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
-  const { title, message } = req.body;
-  const author = req.session.username;
+  try {
+    const errors = validationResult(req);
 
-  await createNewMessage(title, message, added, author);
+    if (!errors.isEmpty()) {
+      console.log(errors.array());
+      return res.render("new-message", { errors: errors.array() });
+    }
 
-  res.redirect("/");
+    const date = new Date(Date.now());
+    const added = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+    const { title, message } = req.body;
+    const author = req.session.username;
+
+    await createNewMessage(title, message, added, author);
+
+    res.redirect("/");
+  } catch (err) {
+    next(err);
+  }
 }
 
 async function deleteMessageGet(req, res, next) {

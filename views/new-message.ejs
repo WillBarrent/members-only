@@ -19,10 +19,24 @@
       <div class="message-title">
         <label for="title" class="message-title__label">Title</label>
         <input type="text" class="message-title__input" placeholder="Title of your message" name="title" id="title">
+        <% if (locals.errors) { %>
+        <% locals.errors.map((error) => { %>
+        <% if (error.path == "title") { %>
+        <div class="error-message"><%= error.msg %></div>
+        <% } %>
+        <% }); %>
+        <% } %>
       </div>
       <div class="message-text">
         <label for="message" class="message-text__label">Message</label>
         <textarea class="message-text__input" name="message" id="message">The Message</textarea>
+        <% if (locals.errors) { %>
+        <% locals.errors.map((error) => { %>
+        <% if (error.path == "message") { %>
+        <div class="error-message"><%= error.msg %></div>
+        <% } %>
+        <% }); %>
+        <% } %>
       </div>
       <button class="create-new-message__submit">Create New Message</button>
     </form>

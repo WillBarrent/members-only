@@ -40,6 +40,19 @@ async function isUserTheMember(userId) {
   return false;
 }
 
+async function isUserTheAdmin(userId) {
+  const { rows: user } = await pool.query(
+    "SELECT admin FROM users WHERE id = $1",
+    [userId]
+  );
+
+  if (user[0]["admin"] === true) {
+    return true;
+  }
+
+  return false;
+}
+
 async function getUserName(userId) {
   const { rows: user } = await pool.query(
     "SELECT username FROM users WHERE id = $1",
@@ -57,9 +70,13 @@ async function createNewMessage(title, message, added, author) {
 }
 
 async function getAllMessages() {
-  const {rows: messages} = await pool.query("SELECT * FROM messages");
+  const { rows: messages } = await pool.query("SELECT * FROM messages");
 
   return messages;
+}
+
+async function deleteMessageById(messageId) {
+  await pool.query("DELETE FROM messages WHERE id = $1", [messageId]);
 }
 
 module.exports = {
@@ -67,7 +84,9 @@ module.exports = {
   createUser,
   giveMembership,
   isUserTheMember,
+  isUserTheAdmin,
   getUserName,
   createNewMessage,
   getAllMessages,
+  deleteMessageById,
 };

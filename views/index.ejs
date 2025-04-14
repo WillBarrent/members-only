@@ -57,6 +57,11 @@
           <div class="message__info">
             <div class="message__added"><%= message.added %></div>
             <div class="message__author"><%= message.author %></div>
+            <% if (locals.isAdmin) { %>
+            <div class="message__delete">
+              <a href="/delete/<%= message.id %>" class="message__delete--button">Delete</a>
+            </div>
+            <% } %>
           </div>
           <% } %>
         </div>

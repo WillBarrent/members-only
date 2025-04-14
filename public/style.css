@@ -1,6 +1,6 @@
 :root {
   --main-color: #588157;
-  --second-color: #3a5a40; 
+  --second-color: #3a5a40;
   --text-color: #dad7cd;
   --second-text-color: #a3b18a;
   --font: "Lato", sans-serif;
@@ -215,7 +215,6 @@ ul {
 }
 
 .main {
-  
   padding: 15px 30px;
 }
 
@@ -233,7 +232,7 @@ ul {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-} 
+}
 
 .message__title {
   font-size: 25px;
@@ -245,12 +244,31 @@ ul {
   margin-top: 10px;
 
   display: flex;
+  align-items: center;
   gap: 10px;
 
   color: var(--text-color);
+
+  font-size: 15px;
 }
 
 .message__text {
   font-size: 18px;
   color: var(--text-color);
+}
+
+.message__delete--button {
+  background-color: var(--second-color);
+  color: var(--text-color);
+
+  font-size: 15px;
+
+  padding: 1px 6px;
+
+  text-decoration: none;
+}
+
+.message__delete--button:hover {
+  cursor: pointer;
+  background-color: #2e4532;
 }

@@ -3,6 +3,7 @@ const {
   giveMembership,
   isUserTheMember,
   getAllMessages,
+  isUserTheAdmin,
 } = require("../db/db");
 const { validationResult } = require("express-validator");
 const { hashPassword } = require("../utils/passwordUtils");
@@ -13,10 +14,12 @@ async function indexGet(req, res, next) {
 
   if (req.isAuthenticated()) {
     const isMember = await isUserTheMember(req.session.passport.user);
+    const isAdmin = await isUserTheAdmin(req.session.passport.user);
 
     return res.render("index", {
       login: true,
       isMember: isMember,
+      isAdmin: isAdmin,
       messages: allMessages,
     });
   }

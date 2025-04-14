@@ -1,4 +1,8 @@
-const { createNewMessage, getUserName } = require("../db/db");
+const {
+  createNewMessage,
+  getUserName,
+  deleteMessageById,
+} = require("../db/db");
 
 async function createMessageGet(req, res, next) {
   if (req.isAuthenticated()) {
@@ -24,7 +28,14 @@ async function createMessagePost(req, res, next) {
   res.redirect("/");
 }
 
+async function deleteMessageGet(req, res, next) {
+  const { messageId } = req.params;
+  await deleteMessageById(messageId);
+  res.redirect("/");
+}
+
 module.exports = {
   createMessageGet,
   createMessagePost,
+  deleteMessageGet,
 };

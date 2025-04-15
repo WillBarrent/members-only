@@ -3,6 +3,7 @@ const {
   createNewMessage,
   getUserName,
   deleteMessageById,
+  isUserTheAdmin,
 } = require("../db/db");
 
 async function createMessageGet(req, res, next) {
@@ -41,6 +42,14 @@ async function createMessagePost(req, res, next) {
 }
 
 async function deleteMessageGet(req, res, next) {
+  if (
+    !(
+      req.isAuthenticated() && (await isUserTheAdmin(req.session.passport.user))
+    )
+  ) {
+    return res.redirect("/");
+  }
+
   const { messageId } = req.params;
   await deleteMessageById(messageId);
   res.redirect("/");

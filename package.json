@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "node app"
+  },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "connect-pg-simple": "^10.0.0",
